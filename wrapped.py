@@ -10,29 +10,29 @@ files_in_directory = os.listdir(current_directory)
 csv_files = [file for file in files_in_directory if file.endswith('.csv')]
 
 if len(csv_files) == 0:
-    print("Wrapped-soittolistaa ei löydy.\nMene sivulle https://watsonbox.github.io/exportify/ ja lataa soittolista csv-muodossa tähän kansioon.")
+    print("Wrapped playlist not found.\nGo to https://watsonbox.github.io/exportify/ and download the playlist as .csv file to this folder.")
 else:
-    tiedostonumero = 1
-    numerointi = {}
+    filenumber = 1
+    numbering = {}
 
-    print("Mitä Wrapped-soittolistaa käytetään?")
+    print("Which file do you want to search?")
     for file in csv_files:
-        print(f"{tiedostonumero}. {file}")
-        numerointi[tiedostonumero] = file
-        tiedostonumero += 1
+        print(f"{filenumber}. {file}")
+        numbering[filenumber] = file
+        filenumber += 1
     
-    wrapped = numerointi[int(input("Syötä numero: "))]
+    wrapped = numbering[int(input("Input the number: "))]
 
     while True:
-        numero = int(input("Anna numero väliltä 1-100 (0 lopettaa): "))
-        if numero == 0:
+        number = int(input("Input a number between 1-100 (0 will stop the program): "))
+        if number == 0:
             break
 
-        with open(wrapped) as tiedosto:
-            sisältö = tiedosto.readlines()
+        with open(wrapped) as csv:
+            content = csv.readlines()
             
-        kappaletiedot = sisältö[numero].split('","')
-        kappale = str(kappaletiedot[3]) + ": " + str(kappaletiedot[1])
-        vuosi = str(kappaletiedot[8][:4])
-        url = str(kappaletiedot[0][15:])
-        print(kappale, "(" + vuosi + ")" + "\n" + "https://open.spotify.com/track/" + url)
+        song_info = content[number].split('","')
+        song = str(song_info[3]) + ": " + str(song_info[1])
+        release_year = str(song_info[8][:4])
+        url = str(song_info[0][15:])
+        print(song, "(" + release_year + ")" + "\n" + "https://open.spotify.com/track/" + url)
