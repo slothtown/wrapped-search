@@ -10,7 +10,7 @@ Before using this program go to [Exportify](https://watsonbox.github.io/exportif
 # clone the repo
 $ git clone https://github.com/slothtown/wrapped-search.git
 
-# change the working directory to sherlock
+# change the working directory to wrapped-search
 $ cd wrapped-search
 ```
 
